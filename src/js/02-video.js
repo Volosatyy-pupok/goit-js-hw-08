@@ -19,9 +19,15 @@ const loadPlaybackTime = () => {
 // Initialize the player with the saved playback time (if available)
 const initializePlayer = () => {
   const savedTime = loadPlaybackTime();
-  player.setCurrentTime(savedTime).catch((error) => {
-    console.error('Error setting current time:', error);
-  });
+
+  if (savedTime > 0) {
+    player.setCurrentTime(savedTime).catch((error) => {
+      console.error('Error setting current time:', error);
+    });
+  }
+
+  // Start playing the video if savedTime is not available
+  player.play();
 };
 
 // Throttle the saving of playback time to once per second
@@ -37,9 +43,3 @@ player.on('timeupdate', (data) => {
 
 // Initialize the player with the saved playback time
 initializePlayer();
-
-
-
-
-
-
