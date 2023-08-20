@@ -37,7 +37,6 @@ player.on('timeupdate', (data) => {
 
 // Initialize the player with the saved playback time
 initializePlayer();
-Дякую за зауваження, і вибачте за плутанину. Тепер цей код має використовувати import для підключення бібліотек.
 
 
 
