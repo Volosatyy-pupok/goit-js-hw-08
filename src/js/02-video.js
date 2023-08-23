@@ -1,4 +1,4 @@
-import Player from '@vimeo/player';
+import Player, { Vimeo } from '@vimeo/player'; // Додайте Vimeo у імпорт
 import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
@@ -19,7 +19,7 @@ class VideoHandler {
     this.localStorageKey = 'videoplayer-current-time';
     this.init();
   }
-
+  
   init() {
     this.player.on('timeupdate', this.handleTimeUpdate.bind(this));
     this.initializePlayer();
