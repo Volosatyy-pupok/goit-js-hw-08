@@ -2,16 +2,16 @@ import Player from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
-const vimeoPlayer = new Player(iframe);
+const vimeoPlayerInstance = new Player(iframe);
 
 const CURRENT_TIME_KEY = `video-player-timekey`;
 function getCurrentTimeKey(timeKey){
     localStorage.setItem(CURRENT_TIME_KEY, timeKey.seconds);
 }
-vimeoPlayer.on('timeupdate', throttle(getCurrentTimeKey, 1000));
+vimeoPlayerInstance.on('timeupdate', throttle(getCurrentTimeKey, 1000));
 
 const currentTimeValue = localStorage.getItem(CURRENT_TIME_KEY);
-vimeoPlayer.setCurrentTime(currentTimeValue || 0);
+vimeoPlayerInstance.setCurrentTime(currentTimeValue || 0);
 
 class VideoHandler {
   constructor(player) {
@@ -50,6 +50,4 @@ class VideoHandler {
     this.savePlaybackTime(time);
   }, 1000);
 }
-
-const vimeoPlayerInstance = new Vimeo.Player(document.getElementById('vimeo-player'));
 const videoHandler = new VideoHandler(vimeoPlayerInstance);
